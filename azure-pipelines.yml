@@ -12,10 +12,10 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build-DEV
+- stage: BuildDEV
   displayName: Docker Build DEV
   jobs:
-  - job: Build-Backend
+  - job: BuildBackend
     displayName: Backend Build & Push
     pool:
       vmImage: ubuntu-latest
@@ -28,7 +28,7 @@ stages:
           docker tag teste-back bessadocker.azurecr.io/teste-back
           docker push bessadocker.azurecr.io/teste-back
 
-  - job: Build-Frontend
+  - job: BuildFrontend
     displayName: Frontend Build & Push
     pool:
       vmImage: ubuntu-latest
