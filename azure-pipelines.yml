@@ -20,26 +20,11 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      displayName: Build an image
+    - task: DockerCompose@0
       inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/back/Dockerfile'
-        tags: |
-          $(tag)
-
-- stage: Frontend-Build&Push
-  displayName: Frontend Build & Push
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/back/Dockerfile'
-        tags: |
-          $(tag)
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'Bemol DEV (12addb71-4126-4486-8c46-12a71769c2ff)'
+        azureContainerRegistry: '{"loginServer":"bessadocker.azurecr.io", "id" : "/subscriptions/12addb71-4126-4486-8c46-12a71769c2ff/resourceGroups/RGBessa/providers/Microsoft.ContainerRegistry/registries/bessadocker"}'
+        dockerComposeFile: '**/docker-compose.yml'
+        action: 'Push services'
+        includeLatestTag: true
