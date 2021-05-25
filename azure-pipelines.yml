@@ -24,6 +24,6 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
-          docker build -t teste-back .
+          docker build -t teste-back ./back
           docker tag teste-back bessadocker.azurecr.io/teste-back
           docker push bessadocker.azurecr.io/teste-back
