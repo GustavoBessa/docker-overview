@@ -1,4 +1,5 @@
 # Docker
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -20,11 +21,9 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: DockerCompose@0
+    - task: CmdLine@2
       inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: 'Bemol DEV (12addb71-4126-4486-8c46-12a71769c2ff)'
-        azureContainerRegistry: '{"loginServer":"bessadocker.azurecr.io", "id" : "/subscriptions/12addb71-4126-4486-8c46-12a71769c2ff/resourceGroups/RGBessa/providers/Microsoft.ContainerRegistry/registries/bessadocker"}'
-        dockerComposeFile: '**/docker-compose.yml'
-        action: 'Push services'
-        includeLatestTag: true
+        script: |
+          docker build -t teste-back .
+          docker tag teste-back bessadocker.azurecr.io/teste-back
+          docker push bessadocker.azurecr.io/teste-back
