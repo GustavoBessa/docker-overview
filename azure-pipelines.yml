@@ -1,5 +1,4 @@
 # Docker
-
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -24,6 +23,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
+          docker login -u bessadocker -p /UlRB34YwDW3uuJ6iD12Is4oyGmYPZ6E
           docker build -t teste-back ./back
           docker tag teste-back bessadocker.azurecr.io/teste-back
           docker push bessadocker.azurecr.io/teste-back
