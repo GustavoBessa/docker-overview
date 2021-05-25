@@ -1,0 +1,18 @@
+version: "3"
+services:
+    api:
+        container_name: teste-back
+        build:
+            context: ./back
+        image: teste-back
+        restart: always
+        ports:
+        - "8080:8080"
+    site:
+        container_name: teste-front
+        build:
+            context: ./front
+        image: teste-front
+        restart: always
+        ports:
+            - "9090:9090"
