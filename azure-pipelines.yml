@@ -23,7 +23,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
-          docker login -u bessadocker -p /UlRB34YwDW3uuJ6iD12Is4oyGmYPZ6E
+          docker login bessadocker.azurecr.io -u bessadocker -p /UlRB34YwDW3uuJ6iD12Is4oyGmYPZ6E
           docker build -t teste-back ./back
           docker tag teste-back bessadocker.azurecr.io/teste-back
           docker push bessadocker.azurecr.io/teste-back
