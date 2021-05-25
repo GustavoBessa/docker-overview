@@ -27,3 +27,19 @@ stages:
           docker build -t teste-back ./back
           docker tag teste-back bessadocker.azurecr.io/teste-back
           docker push bessadocker.azurecr.io/teste-back
+
+- stage: Frontend
+  displayName: Frontend Build & Push
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: CmdLine@2
+      inputs:
+        script: |
+          docker login bessadocker.azurecr.io -u bessadocker -p /UlRB34YwDW3uuJ6iD12Is4oyGmYPZ6E
+          docker build -t teste-front ./front
+          docker tag teste-front bessadocker.azurecr.io/teste-front
+          docker push bessadocker.azurecr.io/teste-front
